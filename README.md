@@ -1,5 +1,5 @@
 # useph
-Use PHP on HTML
+Use JavaScript on PHP
 
 
 ### Start
@@ -22,7 +22,7 @@ Okey, now write php code to uphp tag.
 
 Example;
 ``
-<uphp> echo "test"; </uphp>
+<uphp> echo "<script>document.write("test")</script>"; </uphp>
 ``
 
-Success, worked your  php code!
+Success, worked your php code!
