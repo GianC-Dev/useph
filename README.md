@@ -9,6 +9,9 @@ First add script and jquery file
 
 > <script src="https://raw.githubusercontent.com/GianC-Dev/useph/main/useph.js" ></script>
 
+And Install PHP file. Link is here
+> https://github.com/GianC-Dev/useph/blob/main/useph.php
+
 Then create tag, name is "uphp"
 <br>
 ``
