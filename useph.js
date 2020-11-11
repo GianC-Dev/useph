@@ -1,5 +1,9 @@
-const res = $("uphp").text();
-$.post("useph.php", {res: res}, function (data) {
-    console.log(data)
-    $("uphp").text(data);
+var list = document.getElementsByTagName("uphp");
+console.log(list.innerHTML);
+$.each(list, function (index, value){
+    let new_res = value.innerHTML;
+    $.post("useph.php", {res: new_res}, function (data) {
+        value.innerHTML = (data);
+    })
 })
+
