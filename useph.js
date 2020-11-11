@@ -1,9 +1,15 @@
 var list = document.getElementsByTagName("uphp");
-console.log(list.innerHTML);
+var n_list = {};
 $.each(list, function (index, value){
-    let new_res = value.innerHTML;
-    $.post("useph.php", {res: new_res}, function (data) {
-        value.innerHTML = (data);
-    })
+    n_list[index] = value.innerHTML;
 })
-
+$.ajax({
+    type: 'post',
+    url: "useph.php",
+    data: n_list,
+    success: function(data) {
+        $.each(data, function (index, value){
+            list[value.key].innerHTML = value.text;
+        })
+    }
+});
