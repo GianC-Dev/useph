@@ -5,14 +5,21 @@ if ($_POST) {
         $str = $item;
         $str = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $str);
         ob_start();
-        try {
-            eval($str);
-        } catch (Throwable $e) {
-            $data[] = array("key" => $key, "text" => "<div style='color: red'> {$e->getMessage()}</div>");
-            continue;
+        $file_name = "useph_" . md5(random_int(100, 500)) . ".php";
+        $file = fopen($file_name, "a+");
+        if (strpos($str, "<?php") == false) {
+            $str = "
+<?php
+try {
+    {$str}
+} catch (Throwable \$e) {
+    echo \"<div style='color: red'>{\$e->getMessage()}</div>\";
+}
+";
         }
-        $res = ob_get_contents();
-        ob_end_clean();
+        fwrite($file, $str);
+        $res = `php {$file_name} `;
+        unlink($file_name);
         $data[] = array("key" => $key, "text" => $res);
     }
     echo json_encode($data);

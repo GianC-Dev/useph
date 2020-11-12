@@ -13,6 +13,7 @@ $.ajax({
                 list[value.key].innerHTML = value.text;
             })
         }catch (err){
+            console.log(err)
             list[data.key].innerHTML = data.text;
         }
     }
