@@ -5,7 +5,12 @@ if ($_POST) {
         $str = $item;
         $str = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $str);
         ob_start();
-        eval($str);
+        try {
+            eval($str);
+        } catch (Throwable $e) {
+            $data[] = array("key" => $key, "text" => "<div style='color: red'> {$e->getMessage()}</div>");
+            continue;
+        }
         $res = ob_get_contents();
         ob_end_clean();
         $data[] = array("key" => $key, "text" => $res);

@@ -8,8 +8,12 @@ $.ajax({
     url: "useph.php",
     data: n_list,
     success: function(data) {
-        $.each(data, function (index, value){
-            list[value.key].innerHTML = value.text;
-        })
+        try {
+            $.each(data, function (index, value) {
+                list[value.key].innerHTML = value.text;
+            })
+        }catch (err){
+            list[data.key].innerHTML = data.text;
+        }
     }
 });
